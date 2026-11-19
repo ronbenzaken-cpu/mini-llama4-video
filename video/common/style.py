@@ -34,7 +34,7 @@ ANIM_CENTER = RIGHT * 2.6
 
 # ---- timing ----
 READ_PAUSE = 0.15       # tiny gap after each narration block (user: "very very short")
-LEAD_IN = 0.3           # silent pause before the first sentence, so the first word is never clipped
+LEAD_IN = 0.6           # silence before the first word: shorter clips "Today" on some players
 FADE_OUT = 0.5          # every scene ends by fading everything out over this time
 
 # ---- voice (Microsoft Edge neural TTS) ----
