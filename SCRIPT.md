@@ -31,7 +31,7 @@ class Scene_X_Y(NarratedScene):
         self.fade_out_all()
 ```
 Render a preview with `.venv/Scripts/python -m manim -ql video/scenes/<file>.py Scene_X_Y`. The output goes to `media/videos/<file>/480p15/`.
-**There is no LaTeX on this machine.** Use `Text` / `MarkupText` / `Code`, never `MathTex` / `Tex`. For math, use Unicode in `Text` (∂, σ, −, ×, ⋮).
+**There is no LaTeX on this machine.** Use `Text` / `MarkupText` / `Code`, never `MathTex` / `Tex`. For math, use Unicode in `Text` (∂, σ, −, ×, ⋮). **Check glyphs in the stills:** Consolas lacks some symbols (for example `∝` renders as a box). If a symbol shows as a box, use `font="Cambria Math"` for that one Text or rewrite it in words.
 
 **Act 3 layout:** `CodePanel` on the left 40% showing the 9-line snippet, with the scene's line highlighted. The animation fills the right 60%.
 
