@@ -24,4 +24,5 @@ TRACE = json.loads(_PATH.read_text(encoding="utf-8"))
 
 def show_char(c: str) -> str:
     """Make whitespace visible on screen."""
-    return {" ": "␣", "\n": "↵"}.get(c, c)
+    return {" ": "·",  # Consolas has no ␣ glyph; middle dot renders
+            "\n": "↵"}.get(c, c)
