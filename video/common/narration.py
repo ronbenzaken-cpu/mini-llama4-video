@@ -26,6 +26,14 @@ class NarratedScene(VoiceoverScene):
             EdgeTTSService(voice=style.VOICE, rate=style.VOICE_RATE, cache_dir=str(cache_dir))
         )
 
+    def voiceover(self, *args, **kwargs):
+        """Same as VoiceoverScene.voiceover, plus a short silent lead-in before the scene's
+        first sentence so players / headphones never clip the first word."""
+        if not getattr(self, "_lead_in_done", False):
+            self._lead_in_done = True
+            self.wait(style.LEAD_IN)
+        return super().voiceover(*args, **kwargs)
+
     # ---------- standard text ----------
     def text(self, s: str, size: float = style.BODY_SIZE, color=style.TEXT, **kw) -> Text:
         return Text(s, font=style.FONT, font_size=size, color=color, **kw)

@@ -34,10 +34,11 @@ ANIM_CENTER = RIGHT * 2.6
 
 # ---- timing ----
 READ_PAUSE = 0.6        # pause after each narration block so labels can be read
+LEAD_IN = 0.3           # silent pause before the first sentence, so the first word is never clipped
 FADE_OUT = 0.5          # every scene ends by fading everything out over this time
 
 # ---- voice (Microsoft Edge neural TTS) ----
-VOICE = "en-US-AndrewMultilingualNeural"
+VOICE = "en-GB-RyanNeural"         # chosen by the user from renders/voice-samples
 VOICE_RATE = "+8%"      # slightly faster than default, sounds more natural
 
 config.background_color = BG
