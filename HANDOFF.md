@@ -52,7 +52,7 @@ Every scene is a standalone file in `video/scenes/`. They are joined into one vi
 | 3.7 loss | `s3_7_loss.py` | ⏳ in progress | ☐ | — |
 | 3.8 backprop (hero) | `s3_8_backward.py` | ⏳ in progress | ☐ | — |
 | 3.9 update | `s3_9_step.py` | ⏳ in progress | ☐ | — |
-| 4.1 outro | `s4_1_outro.py` | ⏳ in progress | ☐ | — |
+| 4.1 outro | `s4_1_outro.py` | ✅ `ba12598` | ☐ (waits for 3.9) | v01 |
 
 Main video so far: see the newest `renders/render-NN.mp4` (its `.txt` lists the scene versions used).
 
