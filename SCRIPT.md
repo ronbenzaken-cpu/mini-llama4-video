@@ -3,6 +3,7 @@
 Each scene is a **standalone brief**. Give one brief to one subagent, and it can build that scene from first frame to last without knowing anything about the other scenes. The scenes are joined only at the end, by `video/render_all.py`.
 
 ## Rules every scene follows (the only shared contract)
+**Subagents: read `AGENT_GUIDE.md` first.** It has the approved style, the builder and critic workflows, and the scene order.
 0. **Start from the base example.** Read and render `video/scenes/s0_0_base_example.py` (class `Scene_0_0`) before writing anything. It is the reference for the file template, heading, voice sync, read pauses, color meanings, counters and the ending. Copy its structure. Reuse `video/common/` helpers (`tokens.token_box/token_row/word`, `marks`, `NarratedScene.text/heading/read_pause`) rather than redrawing them.
 1. **Starts on an empty dark background** and builds everything it needs itself, with nothing carried over from another scene.
 2. **Ends by fading everything out** to the empty background (0.5 s). Because of this, any two scenes can be glued together in any order.

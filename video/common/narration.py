@@ -29,9 +29,13 @@ class NarratedScene(VoiceoverScene):
     def voiceover(self, *args, **kwargs):
         """Same as VoiceoverScene.voiceover, plus a short silent lead-in before the scene's
         first sentence so players / headphones never clip the first word."""
+        # Only the time not already spent animating counts: if the scene animates its title first,
+        # that animation *is* the lead-in and no extra silence is added.
         if not getattr(self, "_lead_in_done", False):
             self._lead_in_done = True
-            self.wait(style.LEAD_IN)
+            elapsed = self.renderer.time or 0
+            if elapsed < style.LEAD_IN:
+                self.wait(style.LEAD_IN - elapsed)
         return super().voiceover(*args, **kwargs)
 
     # ---------- standard text ----------

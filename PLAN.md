@@ -51,7 +51,10 @@ This is a ~3-minute, 3Blue1Brown-style narrated video. It explains Meta's **Llam
 | 14 | Version keeping + clarity rule | `video/save_version.py` saves `renders/scenes/<scene>/<scene>-vNN.mp4` without overwriting. Clarity beats length (SCRIPT rules 7 and 9) | `47c6915`, `6bb7e9f` |
 | 15 | **First 2 scenes by subagents** | 0.1 Cold open (22.1 s, v01) and 1.1 Llama 4 family (32.5 s, v01 to v02). Each agent read PLAN/SCRIPT first and owned one file | `1e3fbc8`, `d4fae73` |
 | 16 | Shared fixes from agent reports | Per-scene voice cache (parallel renders corrupted it), `marks.py` (✓/✗ shapes), no-LaTeX notes (`Integer`, missing glyphs) | `444ed51`, `b30df36` |
-| 17 | **New voice + base example scene** | Replaced the robotic gTTS with Microsoft Edge neural TTS (`edge_voice.py`, voice in `style.VOICE`, 5 samples in `renders/voice-samples/`). Added `video/scenes/s0_0_base_example.py`, the reference scene every agent copies (SCRIPT rule 0). Added `tokens.py` (baseline-safe words, token boxes) and layout constants in `style.py`. New opening for 0.1: "Today we'll learn…" plus a 3-part roadmap | this commit |
+| 17 | **New voice + base example scene** | Replaced the robotic gTTS with Microsoft Edge neural TTS (`edge_voice.py`, voice in `style.VOICE`, 5 samples in `renders/voice-samples/`). Added `video/scenes/s0_0_base_example.py`, the reference scene every agent copies (SCRIPT rule 0). Added `tokens.py` (baseline-safe words, token boxes) and layout constants in `style.py`. New opening for 0.1: "Today we'll learn…" plus a 3-part roadmap | `60934ec` |
+| 18 | **Scene 0.1 built with the user (the model scene)** | Word-synced bookmarks (Edge word timings), scroll transitions, 1080p60, silence trimmed between sentences (0.15 s pauses), 0.8 s lead-in filled by the title animation so "Today" is never swallowed. v04 | `dba2583`, this commit |
+| 19 | **Foundation for all scenes** | `make_trace.py` → `video/assets/trace.json` (real tokens, attention, routing, probabilities, loss 4.284, gradient norms, loss curve, samples), `common/data.py`, `common/code_panel.py` (9-line hero code, `focus(n)`), and **`AGENT_GUIDE.md`** (builder and critic workflows) | this commit |
+| 20 | **All scene agents launched** | One builder subagent per scene (1.1–4.1), then one critic subagent per scene that fixes clarity and the transition from the previous scene | — |
 
 ---
 

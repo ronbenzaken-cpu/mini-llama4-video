@@ -29,12 +29,12 @@ SAFE_W, SAFE_H = 13.0, 7.2                  # keep everything inside this box
 HEADING_POS = UP * 3.3                      # where self.heading() puts the scene heading
 CONTENT_CENTER = DOWN * 0.3                 # center of the area below the heading
 # Act 3 split screen: code on the left 40%, animation on the right 60%
-CODE_PANEL_CENTER = LEFT * 4.4
-ANIM_CENTER = RIGHT * 2.6
+CODE_PANEL_CENTER = LEFT * 3.85
+ANIM_CENTER = RIGHT * 3.0
 
 # ---- timing ----
 READ_PAUSE = 0.15       # tiny gap after each narration block (user: "very very short")
-LEAD_IN = 0.6           # silence before the first word: shorter clips "Today" on some players
+LEAD_IN = 0.8           # first word starts >= 0.8 s in; players/Bluetooth swallow the first ~0.6 s ("Today" got lost)
 FADE_OUT = 0.5          # every scene ends by fading everything out over this time
 
 # ---- voice (Microsoft Edge neural TTS) ----

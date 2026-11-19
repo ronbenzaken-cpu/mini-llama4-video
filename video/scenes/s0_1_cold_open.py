@@ -41,9 +41,10 @@ class Scene_0_1(NarratedScene):
         subtitle = self.text("guessing the next word, correctly", size=style.BODY_SIZE, color=style.DIM)
         subtitle.next_to(title, DOWN, buff=0.35)
 
+        # The title animates during the lead-in silence, so the voice starts on a moving screen.
+        self.play(Write(title), run_time=style.LEAD_IN)
         with self.voiceover(text='Today we\'ll learn how a <bookmark mark="lm"/>language model learns '
                                  'to <bookmark mark="guess"/>guess the next word correctly.'):
-            self.play(Write(title), run_time=1.2)
             self.wait_until_bookmark("guess")
             self.play(FadeIn(subtitle, shift=UP * 0.2), run_time=0.8)
         self.read_pause()
