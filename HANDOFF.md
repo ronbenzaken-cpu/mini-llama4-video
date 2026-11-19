@@ -40,7 +40,7 @@ Every scene is a standalone file in `video/scenes/`. They are joined into one vi
 | 1.4 attention | `s1_4_attention.py` | ⏳ in progress | ☐ | — |
 | 1.5 iRoPE | `s1_5_irope.py` | ⏳ in progress | ☐ | — |
 | 1.6 MoE | `s1_6_moe.py` | ✅ committed `64fcbf1` (version maybe not saved yet) | ☐ | — |
-| 2.1 shrink | `s2_1_shrink.py` | ⏳ in progress | ☐ | — |
+| 2.1 shrink | `s2_1_shrink.py` | ✅ `a582f3c` | ☐ (waits for 1.6) | v01 |
 | 2.2 layers | `s2_2_layers.py` | ⏳ in progress | ☐ | — |
 | 2.3 data | `s2_3_data.py` | ⏳ in progress | ☐ | — |
 | 3.1 targets | `s3_1_targets.py` | ⏳ in progress | ☐ | — |
@@ -54,7 +54,7 @@ Every scene is a standalone file in `video/scenes/`. They are joined into one vi
 | 3.9 update | `s3_9_step.py` | ⏳ in progress | ☐ | — |
 | 4.1 outro | `s4_1_outro.py` | ⏳ in progress | ☐ | — |
 
-Main video so far: `renders/render-01.mp4` (0.1 + 1.1 + 3.6).
+Main video so far: see the newest `renders/render-NN.mp4` (its `.txt` lists the scene versions used).
 
 > ⚠️ **Background subagents belong to the old session.** If that session is closed, any builder or critic still running stops. Work it had finished is already in git commits and `renders/scenes/`. **To find what really finished,** check `git log --oneline` (a "Scene X.Y: …" commit means the builder finished) and `renders/scenes/<scene>/` (saved versions). A scene file that is **untracked or modified with no commit** is an interrupted build: give it to a new builder, which may reuse the file.
 
