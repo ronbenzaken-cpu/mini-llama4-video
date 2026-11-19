@@ -33,7 +33,7 @@ CODE_PANEL_CENTER = LEFT * 4.4
 ANIM_CENTER = RIGHT * 2.6
 
 # ---- timing ----
-READ_PAUSE = 0.6        # pause after each narration block so labels can be read
+READ_PAUSE = 0.15       # tiny gap after each narration block (user: "very very short")
 LEAD_IN = 0.3           # silent pause before the first sentence, so the first word is never clipped
 FADE_OUT = 0.5          # every scene ends by fading everything out over this time
 
