@@ -19,7 +19,7 @@ This is a ~3-minute, 3Blue1Brown-style narrated video. It explains Meta's **Llam
 
 ## 3. Lab requirements we must meet
 - [ ] Topic, takeaway sentence and stack submitted in the Week 6 quiz
-- [ ] Stack set up on the laptop, and a **5 s test clip with one narrated sentence** rendered before the lab
+- [x] Stack set up on the laptop, and a **5 s test clip with one narrated sentence** rendered before the lab
 - [ ] `SCRIPT.md` in the repo (draft done ✓)
 - [ ] Each scene in its own file. Small steps, one commit per step with a *what + why* message
 - [ ] Previews at `-ql`. Full render only near the end
@@ -46,7 +46,8 @@ This is a ~3-minute, 3Blue1Brown-style narrated video. It explains Meta's **Llam
 | 9 | First video plan | `VIDEO_PLAN.md`: a 1-minute, 9-scene version | `072d4ae` |
 | 10 | Restructured into 3 acts | Llama 4 → Mini Llama 4 → code line by line, plus a cold open so the takeaway lands within the first minute | `10fbcb4` |
 | 11 | First script | `SCRIPT.md` with start/end continuity between scenes | `d3f36b5` |
-| 12 | **Script made standalone** | Each scene now starts empty and ends with a fade-out, so any scene can be given to one subagent. Joining happens only at the end. `VIDEO_PLAN.md` was merged into this `PLAN.md` | this commit |
+| 12 | **Script made standalone** | Each scene now starts empty and ends with a fade-out, so any scene can be given to one subagent. Joining happens only at the end. `VIDEO_PLAN.md` was merged into this `PLAN.md` | `725373e` |
+| 13 | **Pre-lab stack ready** | Installed Manim 0.22.1, manim-voiceover 0.4.0 and gTTS. Wrote `video/common/style.py`, `narration.py` (`NarratedScene`) and `video/test_clip.py`. **`renders/test-01.mp4`: 5.1 s with narration** ✓ | this commit |
 
 ---
 

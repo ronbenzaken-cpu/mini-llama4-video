@@ -11,6 +11,26 @@ Each scene is a **standalone brief**. Give one brief to one subagent, and it can
 6. All illustrations are drawn in code. No AI-generated images.
 7. **Done when:** `manim -ql` renders without errors, the narration finishes before the fade-out, the length is within ±3 s of the target, and the scene has been committed.
 
+### Scene file template (copy this to start)
+```python
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # repo root
+
+from manim import *
+from video.common import style
+from video.common.narration import NarratedScene
+
+
+class Scene_X_Y(NarratedScene):
+    def construct(self):
+        with self.voiceover(text="...narration from the brief...") as tracker:
+            ...  # animations; use run_time=tracker.duration (or fractions) to sync with the voice
+        self.fade_out_all()
+```
+Render a preview with `.venv/Scripts/python -m manim -ql video/scenes/<file>.py Scene_X_Y`. The output goes to `media/videos/<file>/480p15/`.
+**There is no LaTeX on this machine.** Use `Text` / `MarkupText` / `Code`, never `MathTex` / `Tex`. For math, use Unicode in `Text` (∂, σ, −, ×, ⋮).
+
 **Act 3 layout:** `CodePanel` on the left 40% showing the 9-line snippet, with the scene's line highlighted. The animation fills the right 60%.
 
 ```python
