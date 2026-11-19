@@ -64,23 +64,27 @@ class Scene_1_1(NarratedScene):
         note = label("box area ~ total parameters", style.DIM, style.LABEL_SIZE - 4)
         note.to_edge(DOWN, buff=0.25).to_edge(RIGHT, buff=0.4)
 
-        # ---- beat 1: the family, sized by parameter count ----
+        # ---- beat 1: title ----
         with self.voiceover(text="Meta's newest Llama is Llama 4.") as tracker:
-            t = tracker.duration
-            self.play(Write(title), run_time=0.25 * t)
-            self.play(
-                LaggedStart(
-                    AnimationGroup(GrowFromEdge(scout, DOWN), FadeIn(scout_cap, shift=UP * 0.2)),
-                    AnimationGroup(GrowFromEdge(maverick, DOWN), FadeIn(mav_cap, shift=UP * 0.2)),
-                    AnimationGroup(FadeIn(behemoth_fill), Create(behemoth),
-                                   FadeIn(beh_cap, shift=UP * 0.2)),
-                    lag_ratio=0.35,
-                ),
-                FadeIn(note),
-                run_time=0.75 * t,
-            )
+            self.play(Write(title), run_time=tracker.duration)
+        self.wait(0.3)
 
-        # ---- beat 2: zoom into Maverick, 128 experts ----
+        # ---- beat 2: the family, one box at a time, drawn to scale ----
+        with self.voiceover(
+            text="It comes in three sizes, drawn here to scale: Scout, Maverick, "
+                 "and the giant Behemoth, which was never released."
+        ) as tracker:
+            t = tracker.duration
+            self.play(FadeIn(note), run_time=0.15 * t)
+            self.play(GrowFromEdge(scout, DOWN), FadeIn(scout_cap, shift=UP * 0.2),
+                      run_time=0.2 * t)
+            self.play(GrowFromEdge(maverick, DOWN), FadeIn(mav_cap, shift=UP * 0.2),
+                      run_time=0.2 * t)
+            self.play(FadeIn(behemoth_fill), Create(behemoth),
+                      FadeIn(beh_cap, shift=UP * 0.2), run_time=0.35 * t)
+        self.wait(1.0)
+
+        # ---- beat 3: zoom into Maverick ----
         rows, cols = 8, 16
         cell = 0.36
         target = Rectangle(width=cols * cell + 0.3, height=rows * cell + 0.3,
@@ -95,25 +99,34 @@ class Scene_1_1(NarratedScene):
 
         new_title = Text("Llama 4 Maverick", font=style.FONT,
                          font_size=style.HEADING_SIZE, color=style.PURPLE).move_to(title)
-        total_lbl = label("400B parameters  ·  128 experts", style.TEXT, style.BODY_SIZE - 4)
+        total_a = label("400B parameters", style.TEXT, style.BODY_SIZE - 4)
+        total_b = label("· 128 experts", style.TEXT, style.BODY_SIZE - 4)
+        total_lbl = VGroup(total_a, total_b).arrange(RIGHT, buff=0.22)
         total_lbl.next_to(target, UP, buff=0.3)
 
-        with self.voiceover(text="Maverick stores 400 billion parameters,") as tracker:
+        with self.voiceover(text="Maverick stores 400 billion parameters.") as tracker:
             t = tracker.duration
             self.play(
                 FadeOut(scout), FadeOut(scout_cap), FadeOut(behemoth),
                 FadeOut(behemoth_fill), FadeOut(beh_cap), FadeOut(mav_cap), FadeOut(note),
                 ReplacementTransform(maverick, target),
                 ReplacementTransform(title, new_title),
-                run_time=0.35 * t,
+                run_time=0.6 * t,
             )
-            self.play(
-                LaggedStart(*[FadeIn(e, scale=0.5) for e in experts], lag_ratio=0.02),
-                FadeIn(total_lbl, shift=UP * 0.2),
-                run_time=0.65 * t,
-            )
+            self.play(FadeIn(total_a, shift=UP * 0.2), run_time=0.4 * t)
+        self.wait(0.5)
 
-        # ---- beat 3: one expert lights up per token ----
+        # ---- beat 4: the 128 experts ----
+        with self.voiceover(text="They are split into 128 experts.") as tracker:
+            t = tracker.duration
+            self.play(
+                LaggedStart(*[FadeIn(e, scale=0.5) for e in experts], lag_ratio=0.03),
+                FadeIn(total_b, shift=UP * 0.2),
+                run_time=t,
+            )
+        self.wait(0.6)
+
+        # ---- beat 5: one expert lights up per token ----
         lit = experts[6 * cols + 5]
         glow = lit.copy().set_fill(style.YELLOW, opacity=1.0).set_stroke(style.YELLOW, width=3)
         active_lbl = label("17B active per token", style.YELLOW, style.BODY_SIZE)
@@ -121,17 +134,24 @@ class Scene_1_1(NarratedScene):
         arrow = Arrow(active_lbl.get_top() + UP * 0.05, lit.get_bottom(),
                       color=style.YELLOW, stroke_width=3, buff=0.08,
                       max_tip_length_to_length_ratio=0.12)
+        footnote = label("attention + 1 shared expert + 1 of 128 routed experts",
+                         style.DIM, style.LABEL_SIZE - 4)
+        footnote.next_to(active_lbl, DOWN, buff=0.2)
 
-        with self.voiceover(text="but each word only uses 17 billion of them.") as tracker:
+        with self.voiceover(
+            text="But each word only uses 17 billion of them: "
+                 "a router sends it to just one expert, and the rest sit idle."
+        ) as tracker:
             t = tracker.duration
             self.play(
                 experts.animate.set_fill(opacity=0.12).set_stroke(opacity=0.5),
                 total_lbl.animate.set_opacity(0.6),
-                run_time=0.25 * t,
+                run_time=0.2 * t,
             )
             self.play(FadeIn(glow, scale=1.6), GrowArrow(arrow),
-                      Write(active_lbl), run_time=0.45 * t)
-            self.play(Indicate(glow, color=style.YELLOW, scale_factor=1.4), run_time=0.3 * t)
+                      Write(active_lbl), run_time=0.35 * t)
+            self.play(FadeIn(footnote, shift=UP * 0.1), run_time=0.2 * t)
+            self.play(Indicate(glow, color=style.YELLOW, scale_factor=1.4), run_time=0.25 * t)
 
-        self.wait(0.3)
+        self.wait(1.5)
         self.fade_out_all()
