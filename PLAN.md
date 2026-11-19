@@ -116,4 +116,4 @@ renders/   (gitignored)  test-01.mp4  render-01.mp4 …
 - **No internet in the lab.** Use `pyttsx3`, the offline Windows voice.
 - **A scene is broken at the end.** `render_all.py` skips it, so there's still a video.
 - **Short on time.** Cut in this order: 1.1 and 1.5, then 3.3, then 2.2. Keep 0.1, 3.7, 3.8 and 3.9 at all costs, since they carry the takeaway.
-- **The video is too long.** Trim the narration first.
+- **Length is not a constraint** (user decision): clarity comes first. Scenes may run longer than the rough targets.

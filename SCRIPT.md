@@ -10,7 +10,8 @@ Each scene is a **standalone brief**. Give one brief to one subagent, and it can
 5. Lives in its own file, `video/scenes/<id>_<name>.py`, with one class named `Scene_<id>` (for example `Scene_3_8`).
 6. All illustrations are drawn in code. No AI-generated images.
 7. **Keep every version.** After every render you want to keep, run `.venv/Scripts/python video/save_version.py video/scenes/<file>.py Scene_X_Y -m "what changed"`. It copies the render to `renders/scenes/<file>/<file>-vNN.mp4` with the next free number, never overwrites, and logs the version. Source versions are kept as git commits, one commit per change.
-8. **Done when:** `manim -ql` renders without errors, the narration finishes before the fade-out, the length is within ±3 s of the target, and the scene has been committed.
+8. **Done when:** `manim -ql` renders without errors, the narration finishes before the fade-out, and the scene has been committed.
+9. **Clarity beats length.** Scene durations (~N s) are rough guides only. If an idea needs more time, more steps, slower animation, pauses or an extra sentence of narration to be clear, take it. Give the viewer time to read every label before the next thing moves, and introduce one new idea at a time.
 
 ### Scene file template (copy this to start)
 ```python
