@@ -47,7 +47,10 @@ This is a ~3-minute, 3Blue1Brown-style narrated video. It explains Meta's **Llam
 | 10 | Restructured into 3 acts | Llama 4 → Mini Llama 4 → code line by line, plus a cold open so the takeaway lands within the first minute | `10fbcb4` |
 | 11 | First script | `SCRIPT.md` with start/end continuity between scenes | `d3f36b5` |
 | 12 | **Script made standalone** | Each scene now starts empty and ends with a fade-out, so any scene can be given to one subagent. Joining happens only at the end. `VIDEO_PLAN.md` was merged into this `PLAN.md` | `725373e` |
-| 13 | **Pre-lab stack ready** | Installed Manim 0.22.1, manim-voiceover 0.4.0 and gTTS. Wrote `video/common/style.py`, `narration.py` (`NarratedScene`) and `video/test_clip.py`. **`renders/test-01.mp4`: 5.1 s with narration** ✓ | this commit |
+| 13 | **Pre-lab stack ready** | Installed Manim 0.22.1, manim-voiceover 0.4.0 and gTTS. Wrote `video/common/style.py`, `narration.py` (`NarratedScene`) and `video/test_clip.py`. **`renders/test-01.mp4`: 5.1 s with narration** ✓ | `9b6d1cb` |
+| 14 | Version keeping + clarity rule | `video/save_version.py` saves `renders/scenes/<scene>/<scene>-vNN.mp4` without overwriting. Clarity beats length (SCRIPT rules 7 and 9) | `47c6915`, `6bb7e9f` |
+| 15 | **First 2 scenes by subagents** | 0.1 Cold open (22.1 s, v01) and 1.1 Llama 4 family (32.5 s, v01 to v02). Each agent read PLAN/SCRIPT first and owned one file | `1e3fbc8`, `d4fae73` |
+| 16 | Shared fixes from agent reports | Per-scene voice cache (parallel renders corrupted it), `marks.py` (✓/✗ shapes), no-LaTeX notes (`Integer`, missing glyphs) | `444ed51`, this commit |
 
 ---
 
