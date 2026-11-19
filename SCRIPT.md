@@ -3,6 +3,7 @@
 Each scene is a **standalone brief**. Give one brief to one subagent, and it can build that scene from first frame to last without knowing anything about the other scenes. The scenes are joined only at the end, by `video/render_all.py`.
 
 ## Rules every scene follows (the only shared contract)
+0. **Start from the base example.** Read and render `video/scenes/s0_0_base_example.py` (class `Scene_0_0`) before writing anything. It is the reference for the file template, heading, voice sync, read pauses, color meanings, counters and the ending. Copy its structure. Reuse `video/common/` helpers (`tokens.token_box/token_row/word`, `marks`, `NarratedScene.text/heading/read_pause`) rather than redrawing them.
 1. **Starts on an empty dark background** and builds everything it needs itself, with nothing carried over from another scene.
 2. **Ends by fading everything out** to the empty background (0.5 s). Because of this, any two scenes can be glued together in any order.
 3. Uses only `video/common/style.py` (colors, fonts, sizes) and `video/common/narration.py` (the voice). It may also use the small helpers in `video/common/` (`TokenRow`, `CodePanel`, charts) as drawing tools. They don't hold state between scenes.
@@ -31,6 +32,7 @@ class Scene_X_Y(NarratedScene):
         self.fade_out_all()
 ```
 Render a preview with `.venv/Scripts/python -m manim -ql video/scenes/<file>.py Scene_X_Y`. The output goes to `media/videos/<file>/480p15/`.
+**Voice:** Microsoft Edge neural TTS (`video/common/edge_voice.py`). The voice and speed are set in `style.VOICE` and `style.VOICE_RATE`. It needs internet the first time each sentence is spoken.
 **There is no LaTeX on this machine.** Use `Text` / `MarkupText` / `Code`, never `MathTex` / `Tex`. For math, use Unicode in `Text` (∂, σ, −, ×, ⋮). `Integer` / `DecimalNumber` also need LaTeX and crash. For counters, redraw a `Text` from a `ValueTracker` with `always_redraw`. Draw ✓ / ✗ with `check_mark()` / `cross_mark()` from `video/common/marks.py`. **Check glyphs in the stills:** Consolas lacks some symbols (for example `∝` renders as a box). If a symbol shows as a box, use `font="Cambria Math"` for that one Text or rewrite it in words.
 
 **Act 3 layout:** `CodePanel` on the left 40% showing the 9-line snippet, with the scene's line highlighted. The animation fills the right 60%.
@@ -59,7 +61,8 @@ opt.step(); opt.zero_grad()                   # 9
   3. A loop diagram **Predict → Loss → Backprop → Update** draws around the box and spins three times while a counter runs to 300.
   4. The guess becomes "be" (green ✓).
   5. The title "How a Llama Learns" appears.
-- **Voice:** "A language model learns by guessing the next word, measuring how wrong it was, and nudging its weights, thousands of times. Let's see how."
+- **Opens with (user request):** "Today we'll learn how a language model learns to guess the next word correctly. We'll look at Meta's open model, Llama: how it is built, and how it learns." Show the sentence game ("To be or not to ___"), then a 3-part roadmap that appears one item at a time: **1. Llama 4 → 2. Our mini Llama → 3. The training code, line by line**.
+- **Voice:** the opening above, then "A language model learns by guessing the next word, measuring how wrong it was, and nudging its weights, thousands of times. Let's see how."
 - **Data:** none.
 
 ---

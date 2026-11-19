@@ -15,7 +15,7 @@ This is a ~3-minute, 3Blue1Brown-style narrated video. It explains Meta's **Llam
 |---|---|
 | **Topic** | How a large language model (Meta's Llama 4) is built and trained: architecture, then forward pass, loss, backpropagation and weight update in real code |
 | **After one minute the viewer understands that…** | *An LLM like Llama is a stack of attention and expert layers that predicts the next token, and training is one loop repeated thousands of times: predict, measure the error with the loss, backprop to find each weight's blame, nudge the weights.* |
-| **Stack** | Python 3.11 · Manim Community Edition · manim-voiceover + gTTS (narration) · PyTorch · Claude Code · git/GitHub |
+| **Stack** | Python 3.11 · Manim Community Edition · manim-voiceover + Microsoft Edge neural TTS (narration) · PyTorch · Claude Code · git/GitHub |
 
 ## 3. Lab requirements we must meet
 - [ ] Topic, takeaway sentence and stack submitted in the Week 6 quiz
@@ -50,7 +50,8 @@ This is a ~3-minute, 3Blue1Brown-style narrated video. It explains Meta's **Llam
 | 13 | **Pre-lab stack ready** | Installed Manim 0.22.1, manim-voiceover 0.4.0 and gTTS. Wrote `video/common/style.py`, `narration.py` (`NarratedScene`) and `video/test_clip.py`. **`renders/test-01.mp4`: 5.1 s with narration** ✓ | `9b6d1cb` |
 | 14 | Version keeping + clarity rule | `video/save_version.py` saves `renders/scenes/<scene>/<scene>-vNN.mp4` without overwriting. Clarity beats length (SCRIPT rules 7 and 9) | `47c6915`, `6bb7e9f` |
 | 15 | **First 2 scenes by subagents** | 0.1 Cold open (22.1 s, v01) and 1.1 Llama 4 family (32.5 s, v01 to v02). Each agent read PLAN/SCRIPT first and owned one file | `1e3fbc8`, `d4fae73` |
-| 16 | Shared fixes from agent reports | Per-scene voice cache (parallel renders corrupted it), `marks.py` (✓/✗ shapes), no-LaTeX notes (`Integer`, missing glyphs) | `444ed51`, this commit |
+| 16 | Shared fixes from agent reports | Per-scene voice cache (parallel renders corrupted it), `marks.py` (✓/✗ shapes), no-LaTeX notes (`Integer`, missing glyphs) | `444ed51`, `b30df36` |
+| 17 | **New voice + base example scene** | Replaced the robotic gTTS with Microsoft Edge neural TTS (`edge_voice.py`, voice in `style.VOICE`, 5 samples in `renders/voice-samples/`). Added `video/scenes/s0_0_base_example.py`, the reference scene every agent copies (SCRIPT rule 0). Added `tokens.py` (baseline-safe words, token boxes) and layout constants in `style.py`. New opening for 0.1: "Today we'll learn…" plus a 3-part roadmap | this commit |
 
 ---
 
